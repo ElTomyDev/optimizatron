@@ -20,3 +20,18 @@ Esta aplicación está dedicada, sobre todo, a aquellas personas con una PC de b
 Con esta aplicación podrás borrar archivos temporales, así como también desactivar servicios que no se utilizan de manera cotidiana, junto con otras funcionalidades adicionales.
 
 ## instalacion
+Para poder utilizar la aplicacion solo tienes que clonar este repositorio
+
+## uso
+
+## estructura-del-proyecto
+
+OPTIMIZATRON
+|--config/                          -> 'Archivos de configuracion'
+|  |-- app_config.py                -> 'Configuracion general del proyecto'
+|--services/                        -> 'Archivos con la logica de la aplicacion'
+|  |-- borrar_archivos.py           -> 'Logica para borrar los archivos temporales'
+|  |-- deshabilitar_servicio.py     -> 'Logica para detener y deshabilitar servicios'
+|--ui/                              -> 'Archivos para crear la interfaz de usuario'
+|  |--widgets/                      -> 'Carpeta para los widgets personalizados de la interfaz'
+|-- 
