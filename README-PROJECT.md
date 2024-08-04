@@ -24,6 +24,9 @@ Para poder utilizar la aplicacion solo tienes que clonar este repositorio
 
 ## uso
 
+[Borrar Archivos Temporales](services/borrar_archivos.py)
+Si no quieres que los archivos temporales se eliminen por completo, comenta la linea 
+
 ## estructura-del-proyecto
 
 OPTIMIZATRON
@@ -34,4 +37,7 @@ OPTIMIZATRON
 |  |-- deshabilitar_servicio.py     -> 'Logica para detener y deshabilitar servicios'
 |--ui/                              -> 'Archivos para crear la interfaz de usuario'
 |  |--widgets/                      -> 'Carpeta para los widgets personalizados de la interfaz'
-|-- 
+|  |-- main_windows.py              -> 'Construccion de la interfaz'
+|-- main.py                         -> 'Ejecucion de la app'
+|-- README-PROJECT.md
+|-- requirements.txt                -> 'Requerimientos y Dependencias'
