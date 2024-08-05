@@ -1,4 +1,4 @@
-HEIGHT = 600 # Alto
+HEIGHT = 500 # Alto
 WIDTH = 500 # Ancho
 
 RUTA_TEMP_1 = r"C:\Windows\TEMP"

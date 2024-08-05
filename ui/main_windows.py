@@ -1,6 +1,7 @@
 import customtkinter as ctk
 from config.app_config import WIDTH, HEIGHT, RUTA_TEMP_1, RUTA_TEMP_2
 from services.borrar_archivos import eliminar_archivos_de_una_carpeta
+from ui.widgets.panel_con_titulo import panel
 
 class MainWindows(ctk.CTk):
     def __init__(self):
@@ -13,9 +14,9 @@ class MainWindows(ctk.CTk):
         
         ### WIDGETS ###
         self.boton_eliminar_temps = ctk.CTkButton(self, text="Eliminar archivos temporales",command=self.eliminar_archivos_temporales)
-        self.boton_eliminar_temps.grid(row=0, column=0, padx=20, pady=10)
+        self.boton_eliminar_temps.place(x=0, y=0,)
         
-        
+        panel(self, True, "Deshabilitar Servicios", 280, 200, 10, "black", 200, 0)
     
     ### FUNCIONES PARA BOTONES ###
     def eliminar_archivos_temporales(self):
