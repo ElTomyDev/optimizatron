@@ -24,8 +24,7 @@ Para poder utilizar la aplicacion solo tienes que clonar este repositorio
 
 ## uso
 
-[Borrar Archivos Temporales](services/borrar_archivos.py)
-Si no quieres que los archivos temporales se eliminen por completo, comenta la linea 
+1. Boton para borrar archivos temporales - El boton ejecuta la funcion '[Comando](services/borrar_archivos.py)' 
 
 ## estructura-del-proyecto
 
