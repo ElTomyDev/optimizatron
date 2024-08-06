@@ -24,7 +24,7 @@ Para poder utilizar la aplicacion solo tienes que clonar este repositorio
 
 ## uso
 
-1. Boton para borrar archivos temporales - El boton ejecuta la funcion '[Comando](services/borrar_archivos.py)' 
+1. Boton para borrar archivos temporales - El boton ejecuta la funcion '[Comando](services/borrar_archivos.py)'
 
 ## estructura-del-proyecto
 
