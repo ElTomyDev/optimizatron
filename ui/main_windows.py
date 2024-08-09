@@ -33,7 +33,7 @@ class MainWindows(ctk.CTk):
         # Crea los checkbox para el panel de 'Deshabilitar servicios de windows'
         self.check_box_frame = ctk.CTkFrame(self.panel_service_frame)
         self.check_box_frame.pack(padx=10, pady=(10,5))
-        self.create_checkboxs_for_service_panel(self.check_box_frame)
+        self.create_checkboxs_for_service_panel(self.check_box_frame, ["Hola","Chau","Buenas","Morite"])
         
         # Crea el boton para desactivar los servicios de windows seleccionados con los checkboxs
         self.boton_deshabilitar_servicios = ctk.CTkButton(self.panel_service_frame,text="Deshabilitar Servicios")

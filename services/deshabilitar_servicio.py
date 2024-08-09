@@ -1,6 +1,11 @@
 import os
 import subprocess
+from  win32 import win32service
 
+
+def lista_de_todos_los_servicios():
+    servicios = win32service
+    
 def estado_del_servicio(nombre_del_servicio:str):
     '''
     Consulta el estado en el que se encuentra el servicio de windows indicado
@@ -58,3 +63,4 @@ def detener_y_deshabilitar_servicio(nombre_del_servicio:str):
     """
     detener_servicio(nombre_del_servicio)
     os.system(f"sc config {nombre_del_servicio} start= disabled")
+
