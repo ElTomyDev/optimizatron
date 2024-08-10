@@ -33,3 +33,10 @@ def obtener_pid_del_servicio(nombre_del_servicio:str):
         return None
     except subprocess.CalledProcessError as e:
         return f"Error al ejecutar el comando: {e}"
+    
+for servicio in obtener_todos_los_servicios():
+    for key, valor in servicio.items():
+        if key == 'name':
+            print(f"nombre: {valor}")
+        if key == 'name_id':
+            print(f"id: {valor}")

@@ -1,9 +1,12 @@
+## CONFIGURACION DE LA UI ##
 HEIGHT = 500 # Alto
 WIDTH = 500 # Ancho
 
+## ARCHIVOS TEMPORALES ##
 RUTA_TEMP_1 = r"C:\Windows\TEMP"
 RUTA_TEMP_2 = r"C:\Users\ADMINI~1\AppData\Local\Temp"""
 
+## SERVICIOS DE WINDOWS ##
 LISTA_SERVICIOS = [
                     "AllJoyn Router Service",
                     "Application Layer Gateway Service",
@@ -41,8 +44,14 @@ LISTA_SERVICIOS = [
                     "Security Center",
                     "Windows Search",
                     "Windows Update",
-                    "Xbox Accessory Manegment Service",
+                    "Xbox Accessory Management Service",
                     "Xbox Live Auth Manager",
                     "Xbox Live Game Save",
-                    "Xbox Live Netwoeking Service"
+                    "Xbox Live Networking Service"
                    ]
+LISTA_DE_PRUEBA = ["XboxGipSvc", "XblAuthManager", "XblGameSave", "XboxNetApiSvc"]
+
+
+
+
+
