@@ -30,7 +30,15 @@ class MainWindows(ctk.CTk):
         
         # Boton para eliminar archivos temporales
         self.boton_eliminar_temps = ctk.CTkButton(self.limpieza_frame, text="Eliminar archivos temporales",command=self.click_eliminar_archivos_temporales)
-        self.boton_eliminar_temps.grid(row=1,column=0,padx=20,pady=(20,20))
+        self.boton_eliminar_temps.grid(row=1,column=0,padx=20,pady=(20,0))
+        
+        # Boton para eliminar las descargas
+        self.boton_eliminar_descargas = ctk.CTkButton(self.limpieza_frame, text="Eliminar Descargas", command=self.click_eliminar_descargas)
+        self.boton_eliminar_descargas.grid(row=2,column=0, padx=20, pady=(7,0))
+        
+        # Botom para vaciar la papelera
+        self.boton_vaciar_papelera = ctk.CTkButton(self.limpieza_frame, text="Vaciar Papelera", command=self.click_vaciar_papelera)
+        self.boton_vaciar_papelera.grid(row=3,column=0, padx=20, pady=(7,20))
         
         ##########################################################
         
@@ -109,6 +117,18 @@ class MainWindows(ctk.CTk):
         for ruta_temp in [RUTA_TEMP_1, RUTA_TEMP_2]:
             eliminar_archivos_de_una_carpeta(ruta_temp)
     
+    def click_eliminar_descargas(self):
+        """
+        Elimina la carpeta descargas al cuando se haga click en el boton
+        """
+        eliminar_archivos_de_una_carpeta(RUTA_DESCARGAS)
+    
+    def click_vaciar_papelera(self):
+        """
+        Vacia la papelera cuando se haga click en el boton
+        """
+        eliminar_archivos_de_una_carpeta(RUTA_PAPELERA)
+    
     def click_deshabilitar_lista_de_servicios(self):
         """
         Recorre una lista con los nombres de los servicios que se desean deshabilitar.
@@ -118,8 +138,8 @@ class MainWindows(ctk.CTk):
             detener_y_deshabilitar_servicio(service)
         
         self.lista_de_servicios_seleccionados.clear() # Limpia la lista de servicios que se seleccionaron
-        
     
+        
     
     
     ### Funcion para correr el programa ###

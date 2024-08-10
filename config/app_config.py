@@ -4,7 +4,13 @@ WIDTH = 500 # Ancho
 
 ## ARCHIVOS TEMPORALES ##
 RUTA_TEMP_1 = r"C:\Windows\TEMP"
-RUTA_TEMP_2 = r"C:\Users\ADMINI~1\AppData\Local\Temp"""
+RUTA_TEMP_2 = r"C:\Users\ADMINI~1\AppData\Local\Temp"
+
+## DESCARGAS ##
+RUTA_DESCARGAS = r"C:\Users\Administrator\Downloads"
+
+## PAPELERA ##
+RUTA_PAPELERA = r"C:\Users\Administrator\Desktop\Basuuraa"
 
 ## SERVICIOS DE WINDOWS ##
 LISTA_SERVICIOS = [
