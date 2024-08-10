@@ -10,7 +10,6 @@ def detener_servicio(nombre_del_servicio:str):
     
     :param nombre_del_servicio: String. Nombre del servicio a detener.
     """
-    print(win32serviceutil.QueryServiceStatus(nombre_del_servicio)[1])
     if win32serviceutil.QueryServiceStatus(nombre_del_servicio)[1] ==  4: # Verifica si el estado de un servicio es 4 (RUNNING)
         win32serviceutil.StopService(nombre_del_servicio)
 
