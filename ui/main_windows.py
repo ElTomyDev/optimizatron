@@ -1,6 +1,7 @@
 import customtkinter as ctk
 from config.app_config import *
 from services.borrar_archivos import eliminar_archivos_de_una_carpeta
+from services.vaciar_papelera import vaciar_papelera
 from services.deshabilitar_servicio import detener_y_deshabilitar_servicio
 from querys.services_win_query import *
 from ui.widgets.titulo import custom_title
@@ -127,7 +128,7 @@ class MainWindows(ctk.CTk):
         """
         Vacia la papelera cuando se haga click en el boton
         """
-        eliminar_archivos_de_una_carpeta(RUTA_PAPELERA)
+        vaciar_papelera()
     
     def click_deshabilitar_lista_de_servicios(self):
         """
@@ -138,6 +139,8 @@ class MainWindows(ctk.CTk):
             detener_y_deshabilitar_servicio(service)
         
         self.lista_de_servicios_seleccionados.clear() # Limpia la lista de servicios que se seleccionaron
+        
+        
     
         
     
