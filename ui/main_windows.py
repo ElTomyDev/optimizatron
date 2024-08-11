@@ -2,7 +2,7 @@ import customtkinter as ctk
 from config.app_config import *
 from services.borrar_archivos import eliminar_archivos_de_una_carpeta
 from services.vaciar_papelera import vaciar_papelera
-from services.deshabilitar_servicio import detener_y_deshabilitar_servicio
+from services.deshabilitar_servicio import *
 from querys.services_win_query import *
 from ui.widgets.titulo import custom_title
 
