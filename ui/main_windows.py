@@ -65,6 +65,7 @@ class MainWindows(ctk.CTk):
         # Lista de servicios seleccionados
         self.lista_de_servicios_seleccionados = []
         
+        
         ##########################################################
         
     def create_checkboxs_for_service_panel(self, root, lista_de_servicios:list):
@@ -95,8 +96,7 @@ class MainWindows(ctk.CTk):
         
         :param nombre_servico: String. Nombre del servico a asignarle al checkbox.
         """
-        self.check_box = ctk.CTkCheckBox(root, text=nombre_servicio, command= lambda: self.agregar_un_servicio_a_la_lista(id_nombre_servicio)).grid(row=row_index, column=column_index, padx=5, pady=4, sticky="w")
-        return self.check_box
+        return ctk.CTkCheckBox(root, text=nombre_servicio, command= lambda: self.agregar_un_servicio_a_la_lista(id_nombre_servicio)).grid(row=row_index, column=column_index, padx=5, pady=4, sticky="w")
         
     def agregar_un_servicio_a_la_lista(self, nombre_servico:str):
         """
@@ -129,21 +129,26 @@ class MainWindows(ctk.CTk):
         Vacia la papelera cuando se haga click en el boton
         """
         vaciar_papelera()
+        
     
     def click_deshabilitar_lista_de_servicios(self):
         """
         Recorre una lista con los nombres de los servicios que se desean deshabilitar.
         """
         for service in self.lista_de_servicios_seleccionados:
-            
             detener_y_deshabilitar_servicio(service)
-        
-        self.lista_de_servicios_seleccionados.clear() # Limpia la lista de servicios que se seleccionaron
-        
-        
+        self.desmarcar_todos_checkboxes()
     
-        
-    
+    ### Funciones de UTILIDAD ###
+    def desmarcar_todos_checkboxes(self):
+        """
+        Desmarca todos los checkboxes que esten seleccionados y limpia la lista de servicios
+        seleccionados.
+        """
+        for checkbox in self.check_box_frame.winfo_children():
+            if isinstance(checkbox, ctk.CTkCheckBox):
+                if checkbox.get() == 1:
+                    checkbox.toggle(0)
     
     ### Funcion para correr el programa ###
     def run(self):
