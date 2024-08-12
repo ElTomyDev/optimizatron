@@ -55,7 +55,8 @@ LISTA_SERVICIOS = [
                     "Xbox Live Game Save",
                     "Xbox Live Networking Service"
                    ]
-LISTA_DE_PRUEBA = ["XboxGipSvc", "XblAuthManager", "XblGameSave", "XboxNetApiSvc"]
+
+
 
 
 
