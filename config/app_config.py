@@ -56,7 +56,20 @@ LISTA_SERVICIOS = [
                     "Xbox Live Networking Service"
                    ]
 
-
+LISTA_SERVICIOS_COMPATIBILIDAD = [
+                    "Windows Defender Service",
+                    "Connected User Experiences and Telemetry",
+                    "Diagnostic Policy Service",
+                    "Distributed Link Tracking Client",
+                    "IP Helper",
+                    "Remote Desktop Configuration",
+                    "Remote Desktop Services",
+                    "Remote Desktop Services UserMode Port Redirector",
+                    "Security Center",
+                    "Windows Search",
+                    "Windows Update"
+                    
+                   ]
 
 
 

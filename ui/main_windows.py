@@ -55,7 +55,7 @@ class MainWindows(ctk.CTk):
         self.select_bottom_frame = ctk.CTkFrame(self.panel_service_frame)
         self.select_bottom_frame.grid(row=1, column=0, padx=10, pady=5, sticky="w")
         
-        self.boton_elegir_compatibilidad = ctk.CTkButton(self.select_bottom_frame, text="Mas Compatibilidad")
+        self.boton_elegir_compatibilidad = ctk.CTkButton(self.select_bottom_frame, text="Mas Compatibilidad", command=self.click_opcion_de_compatibilidad)
         self.boton_elegir_compatibilidad.grid(row=1, column=0, padx=(10, 0), pady=10)
         
         self.boton_elegir_rendimiento = ctk.CTkButton(self.select_bottom_frame, text="Mas Rendimiento", command=self.click_opcion_de_rendimiento)
@@ -151,7 +151,7 @@ class MainWindows(ctk.CTk):
     
     def click_opcion_de_rendimiento(self):
         """
-        Selecciona TODOS los checkboxes
+        Selecciona TODOS los checkboxes.
         """
         for checkbox in self.check_box_frame.winfo_children():
             if isinstance(checkbox, ctk.CTkCheckBox):
@@ -159,6 +159,20 @@ class MainWindows(ctk.CTk):
                     checkbox.toggle(1)
                 else:
                     checkbox.toggle(0)
+    
+    def click_opcion_de_compatibilidad(self):
+        """
+        Selecciona SOLO los checkbox que no afecten a la compatibilidad del sistema.
+        """
+        
+        for service in LISTA_SERVICIOS_COMPATIBILIDAD:
+            for checkbox in self.check_box_frame.winfo_children():
+                if isinstance(checkbox, ctk.CTkCheckBox):
+                    if checkbox.cget("text") != service:
+                        if checkbox.get() == 0:
+                            checkbox.toggle(1)
+                        else:
+                            checkbox.toggle(0)
     
     ### Funciones de UTILIDAD ###
     def desmarcar_todos_checkboxes(self):
