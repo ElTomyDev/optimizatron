@@ -90,7 +90,7 @@ class MainWindows(ctk.CTk):
         row_index = 0
         column_index = 0
         for service_display in LISTA_SERVICIOS: # Recorre una lista con servicios que se pueden deshabilitar
-            for service_dict in obtener_todos_los_servicios(): # Recorre la lista con todos los servicios (En forma de diccionario)
+            for service_dict in get_all_services(): # Recorre la lista con todos los servicios (En forma de diccionario)
                 for value_type, value in service_dict.items(): # Recorre el diccionario con los valores del servicio
                     if value_type == 'name':
                         service_name = value

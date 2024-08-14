@@ -1,32 +1,32 @@
 from  win32 import win32service
 import subprocess
 
-def obtener_todos_los_servicios():
+def get_all_services():
     """
-    Devuelve una lista con todos los servicios de windows que tiene el usuario en forma de diccionario
+    Devuelve una lista con todos los servicios de windows que tiene el usuario en forma de diccionario.
     """
-    servicios = win32service.EnumServicesStatus(win32service.OpenSCManager(None, None, win32service.SC_MANAGER_ALL_ACCESS))
-    lista_servicios = []
-    for servicio in servicios:
-        name_id, display_name, state = servicio
-        servicio_dict = {
+    services = win32service.EnumServicesStatus(win32service.OpenSCManager(None, None, win32service.SC_MANAGER_ALL_ACCESS))
+    services_list = []
+    for service in services:
+        name_id, display_name, state = service
+        service_dict = {
             'name': display_name,
             'name_id': name_id,
             'state': state[1]
         }
-        lista_servicios.append(servicio_dict)
-    return lista_servicios
+        services_list.append(service_dict)
+    return services_list
 
-def obtener_pid_del_servicio(nombre_del_servicio:str):
+def get_service_pid(id_service_name:str):
     '''
     Consulta el PID del servicio de windows que este habilitado.
     
-    :param nombre_del_servicio: String. Nombre del servicio a consultar.
+    :param id_service_name: String. Nombre del servicio a consultar.
     '''
     try:
-        resultado = subprocess.run(["sc", "queryex", nombre_del_servicio], capture_output=True, text=True, check=True)
-        salida = resultado.stdout
-        for line in salida.splitlines():
+        query = subprocess.run(["sc", "queryex", id_service_name], capture_output=True, text=True, check=True)
+        output = query.stdout
+        for line in output.splitlines():
             if "PID" in line:
                 pid = int(line.split()[-1])
                 return pid
