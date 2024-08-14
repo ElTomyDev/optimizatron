@@ -79,49 +79,39 @@ class MainWindows(ctk.CTk):
         
         
         ##########################################################
-        
+    
+    ### FUNCIONES PARA LOS WIDGETS ###
     def create_checkboxes_for_service_frame(self, root):
         """
         Compara la lista con los servicios que se pueden deshabilitar con la lista
         de todos los servicios y si coinciden los servicios crea un checkbox con los
         valores adecuados.
-        
-        :param root: Ruta de la vista donde se ven los checkboxes.
         """
         row_index = 0
         column_index = 0
-        for service_display in LISTA_SERVICIOS:
-            for service_dict in obtener_todos_los_servicios():
-                for value_type, value in service_dict.items():
+        for service_display in LISTA_SERVICIOS: # Recorre una lista con servicios que se pueden deshabilitar
+            for service_dict in obtener_todos_los_servicios(): # Recorre la lista con todos los servicios (En forma de diccionario)
+                for value_type, value in service_dict.items(): # Recorre el diccionario con los valores del servicio
                     if value_type == 'name':
                         service_name = value
                     if service_name == service_display:
                         if value_type == 'name_id':
-                            self.crear_checkbox_con_un_servicio_asignado(root, value, service_name, row_index, column_index)
+                            self.create_checkbox_with_service_assigned(root, value, service_name, row_index, column_index)
                             row_index += 1
                             if row_index == 10:
                                 row_index = 0
                                 column_index += 1
     
-    def crear_checkbox_con_un_servicio_asignado(self, root, id_nombre_servicio:str, nombre_servicio:str, row_index:int, column_index:int):
+    def create_checkbox_with_service_assigned(self, root, id_service_name:str, service_name:str, row_index:int, column_index:int):
         """
-        Crea un checkbox con un nombre de servicio asignado.
+        Crea un checkbox que guarda la id de un servicio de windows.
         
-        :param nombre_servicio: String. Nombre del servicio a asignarle al checkbox.
+        :param id_service_name: String. ID del nombre del servicio a guardar en el checkbox.
+        :param service_name: String. Nombre del servicio como descripción del checkbox.
+        :param row_index: Integer. Index de la fila donde se ubica el checkbox.
+        :param column_index: Integer. Index de la columna donde se ubica el checkbox.
         """
-        return ctk.CTkCheckBox(root, text=nombre_servicio, command= lambda: self.agregar_un_servicio_a_la_lista(id_nombre_servicio)).grid(row=row_index, column=column_index, padx=5, pady=4, sticky="w")
-        
-    def agregar_un_servicio_a_la_lista(self, nombre_servicio:str):
-        """
-        Agrega el nombre de un servicio de windows a una lista y luego la retorna.
-        
-        :param nombre_servicio: String. Nombre del servicio de windows que se va agregar a la lista
-        """
-        if nombre_servicio not in self.selected_services_list:
-            self.selected_services_list.append(nombre_servicio)
-        else:
-            self.selected_services_list.remove(nombre_servicio)
-        print(self.selected_services_list)
+        return ctk.CTkCheckBox(root, text=service_name, command= lambda: self.agregar_un_servicio_a_la_lista(id_service_name)).grid(row=row_index, column=column_index, padx=5, pady=4, sticky="w")
     
     ### FUNCIONES PARA BOTONES ###
     def click_eliminar_archivos_temporales(self):
@@ -188,7 +178,18 @@ class MainWindows(ctk.CTk):
                 if checkbox.get() == 1:
                     checkbox.toggle(0)
                 
-    
+    def agregar_un_servicio_a_la_lista(self, nombre_servicio:str):
+        """
+        Agrega el nombre de un servicio de windows a una lista y luego la retorna.
+        
+        :param nombre_servicio: String. Nombre del servicio de windows que se va agregar a la lista
+        """
+        if nombre_servicio not in self.selected_services_list:
+            self.selected_services_list.append(nombre_servicio)
+        else:
+            self.selected_services_list.remove(nombre_servicio)
+        print(self.selected_services_list)
+
     ### Función para correr el programa ###
     def run(self):
         self.mainloop()
