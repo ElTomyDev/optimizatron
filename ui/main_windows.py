@@ -1,7 +1,7 @@
 import customtkinter as ctk
 from config.app_config import *
-from services.borrar_archivos import eliminar_archivos_de_una_carpeta
-from services.vaciar_papelera import vaciar_papelera
+from services.borrar_archivos import delete_files_folder
+from services.vaciar_papelera import empty_bin
 from services.deshabilitar_servicio import *
 from querys.services_win_query import *
 from ui.widgets.titulo import custom_title
@@ -121,19 +121,19 @@ class MainWindows(ctk.CTk):
         dentro del mismo.
         """
         for temp_rute in [TEMP_RUTE_1, TEMP_RUTE_2]:
-            eliminar_archivos_de_una_carpeta(temp_rute)
+            delete_files_folder(temp_rute)
     
     def click_empty_downloads_files(self):
         """
         Elimina los archivos que hay dentro de la carpeta de descargas.
         """
-        eliminar_archivos_de_una_carpeta(DOWNLOADS_RUTE)
+        delete_files_folder(DOWNLOADS_RUTE)
     
     def click_empty_bin_files(self):
         """
         Elimina los archivos que hay dentro de la papelera de reciclaje.
         """
-        vaciar_papelera()
+        empty_bin()
     
     
     def click_disable_service_list(self):
@@ -142,7 +142,7 @@ class MainWindows(ctk.CTk):
         
         """
         for service in self.selected_services_list:
-            detener_y_deshabilitar_servicio(service)
+            stop_and_disable_service(service)
         self.uncheck_all_checkboxes()
     
     def click_performance_option(self):

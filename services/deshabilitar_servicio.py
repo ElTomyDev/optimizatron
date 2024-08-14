@@ -3,26 +3,27 @@ from querys.services_win_query import *
 import win32serviceutil
 import win32con
 
-def detener_servicio(nombre_del_servicio:str):
+def stop_service(id_service_name:str):
     """
     Detiene un servicio de windows indicado SOLO si este esta Activo.
     
-    :nota: ingora los servicios de que dependen de {nombre_del_servicio}.
+    :nota: ignora los servicios de que dependen de {id_service_name}.
     
-    :param nombre_del_servicio: String. Nombre del servicio a detener.
+    :param id_service_name: String. Nombre (ID) del servicio a detener.
     """
     try:
         
-        if win32serviceutil.QueryServiceStatus(nombre_del_servicio)[1] ==  4: # Verifica si el estado de un servicio es 4 (RUNNING)
-            win32serviceutil.StopServiceWithDeps(nombre_del_servicio)
+        if win32serviceutil.QueryServiceStatus(id_service_name)[1] ==  4: # Verifica si el estado de un servicio es 4 (RUNNING)
+            win32serviceutil.StopServiceWithDeps(id_service_name)
     except Exception as e:
-        print(f"No se pudo encontrar el servicio: '{nombre_del_servicio}': {e}")
-def detener_y_deshabilitar_servicio(nombre_del_servicio:str):
+        print(f"No se pudo encontrar el servicio: '{id_service_name}': {e}")
+
+def stop_and_disable_service(id_service_name:str):
     """
     Detiene y Deshabilita el servicio de windows indicado.
     
-    :param nombre_del_servicio: String. Nombre del servicio a modificar.
+    :param id_service_name: String. Nombre (id) del servicio a modificar.
     """
-    detener_servicio(nombre_del_servicio)
-    os.system(f"sc config {nombre_del_servicio} start= disabled")
+    stop_service(id_service_name)
+    os.system(f"sc config {id_service_name} start= disabled")
 

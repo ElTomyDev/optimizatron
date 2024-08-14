@@ -1,19 +1,18 @@
 import os
 #from send2trash import send2trash
 
-def eliminar_archivos_de_una_carpeta(ruta_carpeta:str):
+def delete_files_folder(folder_rute:str):
     '''
+    Selecciona la carpeta indicada, y después recorre sus archivos para eliminarlos.
     
-    Selecciona la carpeta indicada, y despues recorre sus archivos para eliminarlos.
-    
-    :param ruta_carpeta: String. Ruta *r* de la carpeta.
+    :param folder_rute: String. Ruta *r* de la carpeta.
     '''
-    seleccionar_carpeta = os.listdir(ruta_carpeta)
-    for file in seleccionar_carpeta:
-        seleccionar_archivo = fr"{ruta_carpeta}\{file}"
+    select_folder = os.listdir(folder_rute)
+    for file in select_folder:
+        select_file = fr"{folder_rute}\{file}"
         try:
-            os.remove(seleccionar_archivo)
+            os.remove(select_file)
         except PermissionError:
-            print(f"El archivo {seleccionar_archivo} esta en uso y no puede ser eliminado")
+            print(f"El archivo {select_file} esta en uso y no puede ser eliminado")
             continue
 
