@@ -1,8 +1,8 @@
 import customtkinter as ctk
 from config.app_config import *
-from services.borrar_archivos import delete_files_folder
-from services.vaciar_papelera import empty_bin
-from services.deshabilitar_servicio import *
+from services.delete_files import delete_files_folder
+from services.empty_bin import empty_bin
+from services.disable_services import *
 from querys.services_win_query import *
 from ui.widgets.titulo import custom_title
 
@@ -134,7 +134,6 @@ class MainWindows(ctk.CTk):
         Elimina los archivos que hay dentro de la papelera de reciclaje.
         """
         empty_bin()
-    
     
     def click_disable_service_list(self):
         """
