@@ -3,17 +3,17 @@ HEIGHT = 500 # Alto
 WIDTH = 500 # Ancho
 
 ## ARCHIVOS TEMPORALES ##
-RUTA_TEMP_1 = r"C:\Windows\TEMP"
-RUTA_TEMP_2 = r"C:\Users\ADMINI~1\AppData\Local\Temp"
+TEMP_RUTE_1 = r"C:\Windows\TEMP"
+TEMP_RUTE_2 = r"C:\Users\ADMINI~1\AppData\Local\Temp"
 
 ## DESCARGAS ##
-RUTA_DESCARGAS = r"C:\Users\Administrator\Downloads"
+DOWNLOADS_RUTE = r"C:\Users\Administrator\Downloads"
 
 ## PAPELERA ##
-RUTA_PAPELERA = r"C:\Users\Administrator\Desktop\Basuuraa"
+BIN_RUTE = r"C:\Users\Administrator\Desktop\Basuuraa"
 
 ## SERVICIOS DE WINDOWS ##
-LISTA_SERVICIOS = [
+REMOVABLE_SERVICE_LIST = [
                     "AllJoyn Router Service",
                     "Application Layer Gateway Service",
                     "BitLocker Drive Encryption Service",
@@ -56,7 +56,7 @@ LISTA_SERVICIOS = [
                     "Xbox Live Networking Service"
                    ]
 
-LISTA_SERVICIOS_COMPATIBILIDAD = [
+REMOVABLE_FOR_MORE_COMPATIBILITY_LIST = [
                     "Windows Defender Service",
                     "Connected User Experiences and Telemetry",
                     "Diagnostic Policy Service",

@@ -89,7 +89,7 @@ class MainWindows(ctk.CTk):
         """
         row_index = 0
         column_index = 0
-        for service_display in LISTA_SERVICIOS: # Recorre una lista con servicios que se pueden deshabilitar
+        for service_display in REMOVABLE_SERVICE_LIST: # Recorre una lista con servicios que se pueden deshabilitar
             for service_dict in get_all_services(): # Recorre la lista con todos los servicios (En forma de diccionario)
                 for value_type, value in service_dict.items(): # Recorre el diccionario con los valores del servicio
                     if value_type == 'name':
@@ -120,14 +120,14 @@ class MainWindows(ctk.CTk):
         las carpetas de los archivos temporales y elimina el contenido 
         dentro del mismo.
         """
-        for temp_rute in [RUTA_TEMP_1, RUTA_TEMP_2]:
+        for temp_rute in [TEMP_RUTE_1, TEMP_RUTE_2]:
             eliminar_archivos_de_una_carpeta(temp_rute)
     
     def click_empty_downloads_files(self):
         """
         Elimina los archivos que hay dentro de la carpeta de descargas.
         """
-        eliminar_archivos_de_una_carpeta(RUTA_DESCARGAS)
+        eliminar_archivos_de_una_carpeta(DOWNLOADS_RUTE)
     
     def click_empty_bin_files(self):
         """
@@ -161,7 +161,7 @@ class MainWindows(ctk.CTk):
         Selecciona SOLO los checkbox que no afecten a la compatibilidad del sistema.
         """
         
-        for service in LISTA_SERVICIOS_COMPATIBILIDAD:
+        for service in REMOVABLE_FOR_MORE_COMPATIBILITY_LIST:
             for checkbox in self.checkboxes_frame.winfo_children():
                 if isinstance(checkbox, ctk.CTkCheckBox):
                     if checkbox.cget("text") != service:
