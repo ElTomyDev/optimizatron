@@ -68,7 +68,7 @@ class MainWindows(ctk.CTk):
         self.checkboxes_frame.grid(row=2, column=0, padx=10, pady=(0,5))
         
         # Agrega los checkboxes
-        self.create_checkboxes_for_service_frame(self.checkboxes_frame, LISTA_SERVICIOS)
+        self.create_checkboxes_for_service_frame(self.checkboxes_frame)
         
         # Crea el botón para desactivar los servicios de windows seleccionados con los checkboxes
         self.button_disable_services = ctk.CTkButton(self.service_frame, text="Deshabilitar Servicios", command=self.click_deshabilitar_lista_de_servicios)
@@ -80,22 +80,23 @@ class MainWindows(ctk.CTk):
         
         ##########################################################
         
-    def create_checkboxes_for_service_frame(self, root, lista_de_servicios:list):
+    def create_checkboxes_for_service_frame(self, root):
         """
-        Crea varios Checkboxes para el panel del apartado de 'Deshabilitar Servicios de Windows'.
-
+        Compara la lista con los servicios que se pueden deshabilitar con la lista
+        de todos los servicios y si coinciden los servicios crea un checkbox con los
+        valores adecuados.
+        
         :param root: Ruta de la vista donde se ven los checkboxes.
-        :param lista_de_servicios: Lista de servicios disponibles a seleccionar.
         """
         row_index = 0
         column_index = 0
-        for service_display in lista_de_servicios:
-            for service in obtener_todos_los_servicios():
-                for key, value in service.items():
-                    if key == 'name':
+        for service_display in LISTA_SERVICIOS:
+            for service_dict in obtener_todos_los_servicios():
+                for value_type, value in service_dict.items():
+                    if value_type == 'name':
                         service_name = value
                     if service_name == service_display:
-                        if key == 'name_id':
+                        if value_type == 'name_id':
                             self.crear_checkbox_con_un_servicio_asignado(root, value, service_name, row_index, column_index)
                             row_index += 1
                             if row_index == 10:
