@@ -30,15 +30,15 @@ class MainWindows(ctk.CTk):
         self.title_cleanup_frame.grid(row=0,column=0, padx=20,pady=(20,0))
         
         # Botón para eliminar archivos temporales
-        self.button_empty_temps = ctk.CTkButton(self.cleanup_frame, text="Eliminar archivos temporales",command=self.click_eliminar_archivos_temporales)
+        self.button_empty_temps = ctk.CTkButton(self.cleanup_frame, text="Eliminar archivos temporales",command=self.click_empty_temp_files)
         self.button_empty_temps.grid(row=1,column=0,padx=20,pady=(20,0))
         
         # Botón para eliminar las descargas
-        self.button_empty_downloads = ctk.CTkButton(self.cleanup_frame, text="Eliminar Descargas", command=self.click_eliminar_descargas)
+        self.button_empty_downloads = ctk.CTkButton(self.cleanup_frame, text="Eliminar Descargas", command=self.click_empty_downloads_files)
         self.button_empty_downloads.grid(row=2,column=0, padx=20, pady=(7,0))
         
         # Botón para vaciar la papelera
-        self.button_empty_bin = ctk.CTkButton(self.cleanup_frame, text="Vaciar Papelera", command=self.click_vaciar_papelera)
+        self.button_empty_bin = ctk.CTkButton(self.cleanup_frame, text="Vaciar Papelera", command=self.click_empty_bin_files)
         self.button_empty_bin.grid(row=3,column=0, padx=20, pady=(7,20))
         
         ##########################################################
@@ -56,11 +56,11 @@ class MainWindows(ctk.CTk):
         self.select_service_bottom_frame.grid(row=1, column=0, padx=10, pady=5, sticky="w")
         
         # Botón para seleccionar mas compatibilidad
-        self.button_compatibility = ctk.CTkButton(self.select_service_bottom_frame, text="Mas Compatibilidad", command=self.click_opcion_de_compatibilidad)
+        self.button_compatibility = ctk.CTkButton(self.select_service_bottom_frame, text="Mas Compatibilidad", command=self.click_compatibility_option)
         self.button_compatibility.grid(row=1, column=0, padx=(10, 0), pady=10)
         
         # Botón para seleccionar mas rendimiento
-        self.button_performance  = ctk.CTkButton(self.select_service_bottom_frame, text="Mas Rendimiento", command=self.click_opcion_de_rendimiento)
+        self.button_performance  = ctk.CTkButton(self.select_service_bottom_frame, text="Mas Rendimiento", command=self.click_performance_option)
         self.button_performance.grid(row=1, column=1, padx=10, pady=10)
         
         # Frame para Agregar los checkboxes
@@ -71,7 +71,7 @@ class MainWindows(ctk.CTk):
         self.create_checkboxes_for_service_frame(self.checkboxes_frame)
         
         # Crea el botón para desactivar los servicios de windows seleccionados con los checkboxes
-        self.button_disable_services = ctk.CTkButton(self.service_frame, text="Deshabilitar Servicios", command=self.click_deshabilitar_lista_de_servicios)
+        self.button_disable_services = ctk.CTkButton(self.service_frame, text="Deshabilitar Servicios", command=self.click_disable_service_list)
         self.button_disable_services.grid(row=3,column=0,padx=20, pady=(5,20))
         
         # Lista de servicios seleccionados
@@ -114,35 +114,38 @@ class MainWindows(ctk.CTk):
         return ctk.CTkCheckBox(root, text=service_name, command= lambda: self.agregar_un_servicio_a_la_lista(id_service_name)).grid(row=row_index, column=column_index, padx=5, pady=4, sticky="w")
     
     ### FUNCIONES PARA BOTONES ###
-    def click_eliminar_archivos_temporales(self):
+    def click_empty_temp_files(self):
         """
-        Recorre una lista de carpetas/rutas y elimina sus archivos.
+        Recorre una lista donde se almacenan las rutas donde se ubican
+        las carpetas de los archivos temporales y elimina el contenido 
+        dentro del mismo.
         """
-        for ruta_temp in [RUTA_TEMP_1, RUTA_TEMP_2]:
-            eliminar_archivos_de_una_carpeta(ruta_temp)
+        for temp_rute in [RUTA_TEMP_1, RUTA_TEMP_2]:
+            eliminar_archivos_de_una_carpeta(temp_rute)
     
-    def click_eliminar_descargas(self):
+    def click_empty_downloads_files(self):
         """
-        Elimina la carpeta descargas al cuando se haga click en el boton
+        Elimina los archivos que hay dentro de la carpeta de descargas.
         """
         eliminar_archivos_de_una_carpeta(RUTA_DESCARGAS)
     
-    def click_vaciar_papelera(self):
+    def click_empty_bin_files(self):
         """
-        Vacía la papelera cuando se haga click en el boton
+        Elimina los archivos que hay dentro de la papelera de reciclaje.
         """
         vaciar_papelera()
         
     
-    def click_deshabilitar_lista_de_servicios(self):
+    def click_disable_service_list(self):
         """
-        Recorre una lista con los nombres de los servicios que se desean deshabilitar.
+        Recorre una lista con los nombres de los servicios, los deshabilita y desmarca todos los checkboxes.
+        
         """
         for service in self.selected_services_list:
             detener_y_deshabilitar_servicio(service)
         self.desmarcar_todos_checkboxes()
     
-    def click_opcion_de_rendimiento(self):
+    def click_performance_option(self):
         """
         Selecciona TODOS los checkboxes.
         """
@@ -153,7 +156,7 @@ class MainWindows(ctk.CTk):
                 else:
                     checkbox.toggle(0)
     
-    def click_opcion_de_compatibilidad(self):
+    def click_compatibility_option(self):
         """
         Selecciona SOLO los checkbox que no afecten a la compatibilidad del sistema.
         """
