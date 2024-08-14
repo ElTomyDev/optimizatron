@@ -43,42 +43,44 @@ class MainWindows(ctk.CTk):
         
         ##########################################################
         
-        # Panel para el apartado de 'Deshabilitar servicios de windows'
-        self.panel_service_frame = ctk.CTkFrame(self.main_grid, border_width = 2, border_color="black")
-        self.panel_service_frame.grid(row=0, column=1, padx=(5,10), pady=(10,10))
+        # Frame para el apartado de 'Deshabilitar servicios de windows'
+        self.service_frame = ctk.CTkFrame(self.main_grid, border_width = 2, border_color="black")
+        self.service_frame.grid(row=0, column=1, padx=(5,10), pady=(10,10))
         
-        # Titulo para el panel de 'Deshabilitar servicios de windows'
-        self.title_service_panel = custom_title(self.panel_service_frame, "Deshabilitar Servicios")
+        # Titulo para el frame de 'Deshabilitar servicios de windows'
+        self.title_service_panel = custom_title(self.service_frame, "Deshabilitar Servicios")
         self.title_service_panel.grid(row=0, column=0, padx=20, pady=(20,0))
         
-        # Botones 'Compatibilidad' y 'Rendimiento'
-        self.select_bottom_frame = ctk.CTkFrame(self.panel_service_frame)
-        self.select_bottom_frame.grid(row=1, column=0, padx=10, pady=5, sticky="w")
+        # frame para los botones 'Compatibilidad' y 'Rendimiento'
+        self.select_service_bottom_frame = ctk.CTkFrame(self.service_frame)
+        self.select_service_bottom_frame.grid(row=1, column=0, padx=10, pady=5, sticky="w")
         
-        self.boton_elegir_compatibilidad = ctk.CTkButton(self.select_bottom_frame, text="Mas Compatibilidad", command=self.click_opcion_de_compatibilidad)
-        self.boton_elegir_compatibilidad.grid(row=1, column=0, padx=(10, 0), pady=10)
+        # Botón para seleccionar mas compatibilidad
+        self.button_compatibility = ctk.CTkButton(self.select_service_bottom_frame, text="Mas Compatibilidad", command=self.click_opcion_de_compatibilidad)
+        self.button_compatibility.grid(row=1, column=0, padx=(10, 0), pady=10)
         
-        self.boton_elegir_rendimiento = ctk.CTkButton(self.select_bottom_frame, text="Mas Rendimiento", command=self.click_opcion_de_rendimiento)
-        self.boton_elegir_rendimiento.grid(row=1, column=1, padx=10, pady=10)
+        # Botón para seleccionar mas rendimiento
+        self.button_performance  = ctk.CTkButton(self.select_service_bottom_frame, text="Mas Rendimiento", command=self.click_opcion_de_rendimiento)
+        self.button_performance.grid(row=1, column=1, padx=10, pady=10)
         
-        # Frame para Agregar los checkbox
-        self.check_box_frame = ctk.CTkFrame(self.panel_service_frame)
-        self.check_box_frame.grid(row=2, column=0, padx=10, pady=(0,5))
+        # Frame para Agregar los checkboxes
+        self.checkboxes_frame = ctk.CTkFrame(self.service_frame)
+        self.checkboxes_frame.grid(row=2, column=0, padx=10, pady=(0,5))
         
         # Agrega los checkboxes
-        self.create_checkboxes_for_service_panel(self.check_box_frame, LISTA_SERVICIOS)
+        self.create_checkboxes_for_service_frame(self.checkboxes_frame, LISTA_SERVICIOS)
         
-        # Crea el boton para desactivar los servicios de windows seleccionados con los checkboxes
-        self.boton_deshabilitar_servicios = ctk.CTkButton(self.panel_service_frame, text="Deshabilitar Servicios", command=self.click_deshabilitar_lista_de_servicios)
-        self.boton_deshabilitar_servicios.grid(row=3,column=0,padx=20, pady=(5,20))
+        # Crea el botón para desactivar los servicios de windows seleccionados con los checkboxes
+        self.button_disable_services = ctk.CTkButton(self.service_frame, text="Deshabilitar Servicios", command=self.click_deshabilitar_lista_de_servicios)
+        self.button_disable_services.grid(row=3,column=0,padx=20, pady=(5,20))
         
         # Lista de servicios seleccionados
-        self.lista_de_servicios_seleccionados = []
+        self.selected_services_list = []
         
         
         ##########################################################
         
-    def create_checkboxes_for_service_panel(self, root, lista_de_servicios:list):
+    def create_checkboxes_for_service_frame(self, root, lista_de_servicios:list):
         """
         Crea varios Checkboxes para el panel del apartado de 'Deshabilitar Servicios de Windows'.
 
@@ -114,11 +116,11 @@ class MainWindows(ctk.CTk):
         
         :param nombre_servicio: String. Nombre del servicio de windows que se va agregar a la lista
         """
-        if nombre_servicio not in self.lista_de_servicios_seleccionados:
-            self.lista_de_servicios_seleccionados.append(nombre_servicio)
+        if nombre_servicio not in self.selected_services_list:
+            self.selected_services_list.append(nombre_servicio)
         else:
-            self.lista_de_servicios_seleccionados.remove(nombre_servicio)
-        print(self.lista_de_servicios_seleccionados)
+            self.selected_services_list.remove(nombre_servicio)
+        print(self.selected_services_list)
     
     ### FUNCIONES PARA BOTONES ###
     def click_eliminar_archivos_temporales(self):
@@ -145,7 +147,7 @@ class MainWindows(ctk.CTk):
         """
         Recorre una lista con los nombres de los servicios que se desean deshabilitar.
         """
-        for service in self.lista_de_servicios_seleccionados:
+        for service in self.selected_services_list:
             detener_y_deshabilitar_servicio(service)
         self.desmarcar_todos_checkboxes()
     
@@ -153,7 +155,7 @@ class MainWindows(ctk.CTk):
         """
         Selecciona TODOS los checkboxes.
         """
-        for checkbox in self.check_box_frame.winfo_children():
+        for checkbox in self.checkboxes_frame.winfo_children():
             if isinstance(checkbox, ctk.CTkCheckBox):
                 if checkbox.get() == 0:
                     checkbox.toggle(1)
@@ -166,7 +168,7 @@ class MainWindows(ctk.CTk):
         """
         
         for service in LISTA_SERVICIOS_COMPATIBILIDAD:
-            for checkbox in self.check_box_frame.winfo_children():
+            for checkbox in self.checkboxes_frame.winfo_children():
                 if isinstance(checkbox, ctk.CTkCheckBox):
                     if checkbox.cget("text") != service:
                         if checkbox.get() == 0:
@@ -180,7 +182,7 @@ class MainWindows(ctk.CTk):
         Desmarca todos los checkboxes que estén seleccionados y limpia la lista de servicios
         seleccionados.
         """
-        for checkbox in self.check_box_frame.winfo_children():
+        for checkbox in self.checkboxes_frame.winfo_children():
             if isinstance(checkbox, ctk.CTkCheckBox):
                 if checkbox.get() == 1:
                     checkbox.toggle(0)
