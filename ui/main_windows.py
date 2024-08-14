@@ -22,24 +22,24 @@ class MainWindows(ctk.CTk):
         ##########################################################
         
         # Frame para botones de limpieza
-        self.limpieza_frame = ctk.CTkFrame(self.main_grid, border_width=2, border_color="black")
-        self.limpieza_frame.grid(row=0,column=0, padx=(10,0), pady=(10, 10))
+        self.cleanup_frame = ctk.CTkFrame(self.main_grid, border_width=2, border_color="black")
+        self.cleanup_frame.grid(row=0,column=0, padx=(10,0), pady=(10, 10))
         
         # Titulo Para el panel de limpieza
-        self.titulo_limpieza_panel = custom_title(self.limpieza_frame, "Limpieza de disco")
-        self.titulo_limpieza_panel.grid(row=0,column=0, padx=20,pady=(20,0))
+        self.title_cleanup_frame = custom_title(self.cleanup_frame, "Limpieza de disco")
+        self.title_cleanup_frame.grid(row=0,column=0, padx=20,pady=(20,0))
         
-        # Boton para eliminar archivos temporales
-        self.boton_eliminar_temps = ctk.CTkButton(self.limpieza_frame, text="Eliminar archivos temporales",command=self.click_eliminar_archivos_temporales)
-        self.boton_eliminar_temps.grid(row=1,column=0,padx=20,pady=(20,0))
+        # Botón para eliminar archivos temporales
+        self.button_empty_temps = ctk.CTkButton(self.cleanup_frame, text="Eliminar archivos temporales",command=self.click_eliminar_archivos_temporales)
+        self.button_empty_temps.grid(row=1,column=0,padx=20,pady=(20,0))
         
-        # Boton para eliminar las descargas
-        self.boton_eliminar_descargas = ctk.CTkButton(self.limpieza_frame, text="Eliminar Descargas", command=self.click_eliminar_descargas)
-        self.boton_eliminar_descargas.grid(row=2,column=0, padx=20, pady=(7,0))
+        # Botón para eliminar las descargas
+        self.button_empty_downloads = ctk.CTkButton(self.cleanup_frame, text="Eliminar Descargas", command=self.click_eliminar_descargas)
+        self.button_empty_downloads.grid(row=2,column=0, padx=20, pady=(7,0))
         
-        # Boton para vaciar la papelera
-        self.boton_vaciar_papelera = ctk.CTkButton(self.limpieza_frame, text="Vaciar Papelera", command=self.click_vaciar_papelera)
-        self.boton_vaciar_papelera.grid(row=3,column=0, padx=20, pady=(7,20))
+        # Botón para vaciar la papelera
+        self.button_empty_bin = ctk.CTkButton(self.cleanup_frame, text="Vaciar Papelera", command=self.click_vaciar_papelera)
+        self.button_empty_bin.grid(row=3,column=0, padx=20, pady=(7,20))
         
         ##########################################################
         
