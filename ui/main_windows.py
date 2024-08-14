@@ -111,7 +111,7 @@ class MainWindows(ctk.CTk):
         :param row_index: Integer. Index de la fila donde se ubica el checkbox.
         :param column_index: Integer. Index de la columna donde se ubica el checkbox.
         """
-        return ctk.CTkCheckBox(root, text=service_name, command= lambda: self.agregar_un_servicio_a_la_lista(id_service_name)).grid(row=row_index, column=column_index, padx=5, pady=4, sticky="w")
+        return ctk.CTkCheckBox(root, text=service_name, command= lambda: self.add_service_to_list(id_service_name)).grid(row=row_index, column=column_index, padx=5, pady=4, sticky="w")
     
     ### FUNCIONES PARA BOTONES ###
     def click_empty_temp_files(self):
@@ -134,7 +134,7 @@ class MainWindows(ctk.CTk):
         Elimina los archivos que hay dentro de la papelera de reciclaje.
         """
         vaciar_papelera()
-        
+    
     
     def click_disable_service_list(self):
         """
@@ -143,7 +143,7 @@ class MainWindows(ctk.CTk):
         """
         for service in self.selected_services_list:
             detener_y_deshabilitar_servicio(service)
-        self.desmarcar_todos_checkboxes()
+        self.uncheck_all_checkboxes()
     
     def click_performance_option(self):
         """
@@ -171,26 +171,25 @@ class MainWindows(ctk.CTk):
                             checkbox.toggle(0)
     
     ### Funciones de UTILIDAD ###
-    def desmarcar_todos_checkboxes(self):
+    def uncheck_all_checkboxes(self):
         """
-        Desmarca todos los checkboxes que estén seleccionados y limpia la lista de servicios
-        seleccionados.
+        Desmarca todos los checkboxes que estén seleccionados.
         """
         for checkbox in self.checkboxes_frame.winfo_children():
             if isinstance(checkbox, ctk.CTkCheckBox):
                 if checkbox.get() == 1:
                     checkbox.toggle(0)
                 
-    def agregar_un_servicio_a_la_lista(self, nombre_servicio:str):
+    def add_service_to_list(self, id_service_name:str):
         """
-        Agrega el nombre de un servicio de windows a una lista y luego la retorna.
+        Agrega el nombre global(id) de un servicio de windows a una lista.
         
-        :param nombre_servicio: String. Nombre del servicio de windows que se va agregar a la lista
+        :param id_service_name: String. Nombre (ID) del servicio de windows que se va agregar a la lista
         """
-        if nombre_servicio not in self.selected_services_list:
-            self.selected_services_list.append(nombre_servicio)
+        if id_service_name not in self.selected_services_list:
+            self.selected_services_list.append(id_service_name)
         else:
-            self.selected_services_list.remove(nombre_servicio)
+            self.selected_services_list.remove(id_service_name)
         print(self.selected_services_list)
 
     ### Función para correr el programa ###
