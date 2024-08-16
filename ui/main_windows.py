@@ -74,11 +74,15 @@ class MainWindows(ctk.CTk):
         self.button_disable_services = ctk.CTkButton(self.service_frame, text="Deshabilitar Servicios", command=self.click_disable_service_list)
         self.button_disable_services.grid(row=3,column=0,padx=20, pady=(5,20))
         
+        ##########################################################
+        
+        ## Variables Globales ##
+        
         # Lista de servicios seleccionados
         self.selected_services_list = []
         
-        
-        ##########################################################
+        # Contador para la cantidad de veces que se presiono un bóton
+        self.count_click_button = 0
     
     ### FUNCIONES PARA LOS WIDGETS ###
     def create_checkboxes_for_service_frame(self, root):
@@ -148,27 +152,32 @@ class MainWindows(ctk.CTk):
         """
         Selecciona TODOS los checkboxes.
         """
+        self.count_click_button += 1
         for checkbox in self.checkboxes_frame.winfo_children():
             if isinstance(checkbox, ctk.CTkCheckBox):
                 if checkbox.get() == 0:
                     checkbox.toggle(1)
-                else:
-                    checkbox.toggle(0)
+        
+        if self.count_click_button >= 2:
+            self.uncheck_all_checkboxes()
+            self.count_click_button = 0
     
     def click_compatibility_option(self):
         """
         Selecciona SOLO los checkbox que no afecten a la compatibilidad del sistema.
         """
         
+        self.count_click_button += 1
         for service in REMOVABLE_FOR_MORE_COMPATIBILITY_LIST:
             for checkbox in self.checkboxes_frame.winfo_children():
                 if isinstance(checkbox, ctk.CTkCheckBox):
                     if checkbox.cget("text") != service:
-                        if checkbox.get() == 0:
-                            checkbox.toggle(1)
-                        else:
-                            checkbox.toggle(0)
-    
+                        checkbox.toggle(1)
+        
+        if self.count_click_button >= 2:
+            self.uncheck_all_checkboxes()
+            self.count_click_button = 0
+        
     ### Funciones de UTILIDAD ###
     def uncheck_all_checkboxes(self):
         """
