@@ -3,7 +3,8 @@ from config.app_config import *
 from services.disable_services import *
 from querys.services_win_query import *
 from ui.widgets.titulo import custom_title
-from services.disk_cleanup_service import *
+from ui.widgets.clean_disk_panel_widget import clean_disk_panel
+
 
 class MainWindows(ctk.CTk):
     def __init__(self):
@@ -19,25 +20,7 @@ class MainWindows(ctk.CTk):
         
         ##########################################################
         
-        # Frame para botones de limpieza
-        self.cleanup_frame = ctk.CTkFrame(self.main_grid, border_width=2, border_color="black")
-        self.cleanup_frame.grid(row=0,column=0, padx=(10,0), pady=(10, 10))
-        
-        # Titulo Para el panel de limpieza
-        self.title_cleanup_frame = custom_title(self.cleanup_frame, "Limpieza de disco")
-        self.title_cleanup_frame.grid(row=0,column=0, padx=20,pady=(20,0))
-        
-        # Botón para eliminar archivos temporales
-        self.button_empty_temps = ctk.CTkButton(self.cleanup_frame, text="Eliminar archivos temporales",command=cleanup_temp_files)
-        self.button_empty_temps.grid(row=1,column=0,padx=20,pady=(20,0))
-        
-        # Botón para eliminar las descargas
-        self.button_empty_downloads = ctk.CTkButton(self.cleanup_frame, text="Eliminar Descargas", command=empty_download_folder_service)
-        self.button_empty_downloads.grid(row=2,column=0, padx=20, pady=(7,0))
-        
-        # Botón para vaciar la papelera
-        self.button_empty_bin = ctk.CTkButton(self.cleanup_frame, text="Vaciar Papelera", command=empty_bin_service)
-        self.button_empty_bin.grid(row=3,column=0, padx=20, pady=(7,20))
+        clean_disk_panel(self.main_grid)
         
         ##########################################################
         
