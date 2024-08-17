@@ -9,8 +9,8 @@ TEMP_RUTE_2 = r"C:\Users\ADMINI~1\AppData\Local\Temp"
 ## DESCARGAS ##
 DOWNLOADS_RUTE = r"C:\Users\Administrator\Downloads"
 
-## PAPELERA ##
-BIN_RUTE = r"C:\Users\Administrator\Desktop\Basuuraa"
+## DESFRAGMENTAR DISCO ##
+
 
 ## SERVICIOS DE WINDOWS ##
 REMOVABLE_SERVICE_LIST = [

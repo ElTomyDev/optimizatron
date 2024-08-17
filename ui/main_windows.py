@@ -1,17 +1,15 @@
 import customtkinter as ctk
 from config.app_config import *
-from services.delete_files import delete_files_folder
-from services.empty_bin import empty_bin
 from services.disable_services import *
 from querys.services_win_query import *
 from ui.widgets.titulo import custom_title
+from services.disk_cleanup_service import *
 
 class MainWindows(ctk.CTk):
     def __init__(self):
         super().__init__()
         
         ### APP CONFIG ###
-        
         self.geometry(f"{WIDTH}x{HEIGHT}")
         self.title("Optimizatron")
         
@@ -30,15 +28,15 @@ class MainWindows(ctk.CTk):
         self.title_cleanup_frame.grid(row=0,column=0, padx=20,pady=(20,0))
         
         # Botón para eliminar archivos temporales
-        self.button_empty_temps = ctk.CTkButton(self.cleanup_frame, text="Eliminar archivos temporales",command=self.click_empty_temp_files)
+        self.button_empty_temps = ctk.CTkButton(self.cleanup_frame, text="Eliminar archivos temporales",command=cleanup_temp_files)
         self.button_empty_temps.grid(row=1,column=0,padx=20,pady=(20,0))
         
         # Botón para eliminar las descargas
-        self.button_empty_downloads = ctk.CTkButton(self.cleanup_frame, text="Eliminar Descargas", command=self.click_empty_downloads_files)
+        self.button_empty_downloads = ctk.CTkButton(self.cleanup_frame, text="Eliminar Descargas", command=empty_download_folder_service)
         self.button_empty_downloads.grid(row=2,column=0, padx=20, pady=(7,0))
         
         # Botón para vaciar la papelera
-        self.button_empty_bin = ctk.CTkButton(self.cleanup_frame, text="Vaciar Papelera", command=self.click_empty_bin_files)
+        self.button_empty_bin = ctk.CTkButton(self.cleanup_frame, text="Vaciar Papelera", command=empty_bin_service)
         self.button_empty_bin.grid(row=3,column=0, padx=20, pady=(7,20))
         
         ##########################################################
@@ -118,27 +116,6 @@ class MainWindows(ctk.CTk):
         return ctk.CTkCheckBox(root, text=service_name, command= lambda: self.add_service_to_list(id_service_name)).grid(row=row_index, column=column_index, padx=5, pady=4, sticky="w")
     
     ### FUNCIONES PARA BOTONES ###
-    def click_empty_temp_files(self):
-        """
-        Recorre una lista donde se almacenan las rutas donde se ubican
-        las carpetas de los archivos temporales y elimina el contenido 
-        dentro del mismo.
-        """
-        for temp_rute in [TEMP_RUTE_1, TEMP_RUTE_2]:
-            delete_files_folder(temp_rute)
-    
-    def click_empty_downloads_files(self):
-        """
-        Elimina los archivos que hay dentro de la carpeta de descargas.
-        """
-        delete_files_folder(DOWNLOADS_RUTE)
-    
-    def click_empty_bin_files(self):
-        """
-        Elimina los archivos que hay dentro de la papelera de reciclaje.
-        """
-        empty_bin()
-    
     def click_disable_service_list(self):
         """
         Recorre una lista con los nombres de los servicios, los deshabilita y desmarca todos los checkboxes.
