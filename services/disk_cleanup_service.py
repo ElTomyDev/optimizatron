@@ -1,14 +1,14 @@
-from models.clean_disk import CleanDisk
+from models.files_manager import FilesManager
 from config.app_config import *
 
-clean_disk = CleanDisk()
+files_manager = FilesManager()
 
 def empty_bin_service():
     """
     Llama a la función 'empty_bin' de la clase 'CleanDisk' para
     vaciar la papelera de reciclaje.
     """
-    CleanDisk.empty_bin()
+    files_manager.empty_bin()
 
 def cleanup_temp_files():
     """
@@ -17,8 +17,8 @@ def cleanup_temp_files():
     dentro del mismo llamando a 'delete_folder_service' de la clase
     'CleanDisk'.
     """
-    for temp_rute in [TEMP_RUTE_1, TEMP_RUTE_2]:
-        clean_disk.delete_files_folder(temp_rute)
+    for temp_rute in files_manager.get_temps_files():
+        files_manager.delete_files_folder(temp_rute)
 
 def empty_download_folder_service():
     """
@@ -26,4 +26,4 @@ def empty_download_folder_service():
     vaciar la carpeta de descarga, pasándole el la ruta de la misma como 
     parámetro de 'delete_files_folder'.
     """
-    clean_disk.delete_files_folder(DOWNLOADS_RUTE)
+    files_manager.delete_files_folder(files_manager.get_downloads_folder())
